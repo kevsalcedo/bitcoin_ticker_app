@@ -60,6 +60,26 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 
+  CupertinoPicker iOSPicker() {
+    List<Widget> getPickerItems() {
+      List<Widget> coinList = [];
+      for (String coin in currenciesList) {
+        var currency = Text(coin);
+        coinList.add(currency);
+      }
+      return coinList;
+    }
+
+    return CupertinoPicker(
+      backgroundColor: Colors.lightBlue,
+      itemExtent: 32.0,
+      onSelectedItemChanged: (int selectedIndex) {
+        print(selectedIndex);
+      },
+      children: getPickerItems(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
