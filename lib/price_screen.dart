@@ -11,7 +11,7 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
   CoinDataModel coinDataModel = CoinDataModel();
 
-  String selectedCurrency = 'USD';
+  String selectedCurrency = 'AUD';
 
   late int foreignExchange;
 
