@@ -61,8 +61,9 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   CupertinoPicker iOSPicker() {
+    List<Widget> coinList = [];
+
     List<Widget> getPickerItems() {
-      List<Widget> coinList = [];
       for (String coin in currenciesList) {
         var currency = Text(coin);
         coinList.add(currency);
