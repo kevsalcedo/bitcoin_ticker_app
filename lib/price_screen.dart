@@ -22,21 +22,20 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   void updateUI() async {
-    var coinData = await coinDataModel.getCoinData();
-    setState(() {
-      if (coinData == null) {
-        foreignExchange = 0;
-        return;
-      }
-      double exchange = coinData['rate'];
-      foreignExchange = exchange.toInt();
-    });
+    try {
+      var coinData = await coinDataModel.getCoinData(selectedCurrency);
+      setState(() {
+        if (coinData == null) {
+          foreignExchange = 0;
+          return;
+        }
+        double exchange = coinData['rate'];
+        foreignExchange = exchange.toInt();
+      });
+    } catch (e) {
+      print(e);
+    }
   }
-
-  // Future<dynamic> getCoinData() async {
-  //   var coinData = await coinDataModel.getCoinData();
-  //   return coinData;
-  // }
 
   DropdownButton<String> getDropdownButton() {
     List<DropdownMenuItem<String>> dropdownItems = [];
