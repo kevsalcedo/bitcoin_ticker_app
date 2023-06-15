@@ -13,7 +13,32 @@ class _PriceScreenState extends State<PriceScreen> {
 
   String selectedCurrency = 'USD';
 
-  List<DropdownMenuItem<String>> getDropdownItems() {
+  late int foreignExchange;
+
+  @override
+  void initState() {
+    super.initState();
+    updateUI();
+  }
+
+  void updateUI() async {
+    var coinData = await coinDataModel.getCoinData();
+    setState(() {
+      if (coinData == null) {
+        foreignExchange = 0;
+        return;
+      }
+      double exchange = coinData['rate'];
+      foreignExchange = exchange.toInt();
+    });
+  }
+
+  // Future<dynamic> getCoinData() async {
+  //   var coinData = await coinDataModel.getCoinData();
+  //   return coinData;
+  // }
+
+  DropdownButton<String> getDropdownButton() {
     List<DropdownMenuItem<String>> dropdownItems = [];
 
     for (int i = 0; i < currenciesList.length; i++) {
