@@ -9,6 +9,8 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
+  CoinDataModel coinDataModel = CoinDataModel();
+
   String selectedCurrency = 'USD';
 
   List<DropdownMenuItem<String>> getDropdownItems() {
