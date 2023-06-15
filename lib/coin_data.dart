@@ -36,13 +36,25 @@ const coinApiURL = 'https://rest.coinapi.io/v1/exchangerate';
 
 class CoinDataModel {
   Future<dynamic> getCoinData(String currency) async {
-    var url = '$coinApiURL/BTC/$currency?apikey=$apiKey';
+    Map<String, String> cryptoMap = {};
+    for (String crypto in cryptoList) {
+      var url = '$coinApiURL/$crypto/$currency?apikey=$apiKey';
+      NetworkHelper networkHelper = NetworkHelper(url);
 
-    NetworkHelper networkHelper = NetworkHelper(url);
+      var coinData = await networkHelper.getData();
 
-    var coinData = await networkHelper.getData();
+      cryptoMap[crypto] = coinData;
+    }
 
-    print(coinData);
-    return coinData;
+    return cryptoMap;
+
+    // var url = '$coinApiURL/BTC/$currency?apikey=$apiKey';
+    //
+    // NetworkHelper networkHelper = NetworkHelper(url);
+    //
+    // var coinData = await networkHelper.getData();
+    //
+    // print(coinData);
+    // return coinData;
   }
 }
