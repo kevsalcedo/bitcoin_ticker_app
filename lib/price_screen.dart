@@ -21,7 +21,13 @@ class _PriceScreenState extends State<PriceScreen> {
     updateUI();
   }
 
+  Map<String, String> coinValues = {};
+
+  bool isWaiting = false;
+
   void updateUI() async {
+    isWaiting = true;
+
     try {
       var coinData = await coinDataModel.getCoinData(selectedCurrency);
       setState(() {
