@@ -29,14 +29,15 @@ class _PriceScreenState extends State<PriceScreen> {
     isWaiting = true;
 
     try {
-      var coinData = await coinDataModel.getCoinData(selectedCurrency);
+      var coinDataPrice = await coinDataModel.getCoinData(selectedCurrency);
+      isWaiting = false;
       setState(() {
-        if (coinData == null) {
+        if (coinDataPrice == null) {
           foreignExchange = 0;
           return;
         }
-        double exchange = coinData['rate'];
-        foreignExchange = exchange.toInt();
+        // foreignExchange = coinDataPrice.toInt();
+        coinValues = coinDataPrice;
       });
     } catch (e) {
       print(e);
