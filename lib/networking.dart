@@ -12,8 +12,9 @@ class NetworkHelper {
     );
 
     if (response.statusCode == 200) {
-      String data = response.body;
-      return jsonDecode(data);
+      var data = jsonDecode(response.body);
+      double currencyPrice = data['rate'];
+      return currencyPrice.toStringAsFixed(0);
     } else {
       print(response.statusCode);
     }
