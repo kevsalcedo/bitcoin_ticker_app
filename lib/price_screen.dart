@@ -54,6 +54,7 @@ class _PriceScreenState extends State<PriceScreen> {
       onChanged: (value) {
         setState(() {
           selectedCurrency = value!;
+          updateUI();
         });
       },
     );
@@ -74,6 +75,8 @@ class _PriceScreenState extends State<PriceScreen> {
       itemExtent: 32.0,
       onSelectedItemChanged: (int selectedIndex) {
         print(selectedIndex);
+        selectedCurrency = coinList[selectedIndex].toString();
+        updateUI();
       },
       children: getPickerItems(),
     );
@@ -100,7 +103,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = $foreignExchange USD',
+                  '1 BTC = $foreignExchange $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
